@@ -98,28 +98,28 @@ setState(() {
           }
           if (!snapshot.hasData) {
             return const CircularProgressIndicator();
-          }else{
-          return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              DocumentSnapshot shop = snapshot.data!.docs[index];
-              return ListTile(
-                title: Text(shop['shopName']),
-                subtitle: Text(shop['email']),
-                onTap: () {
-                  Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => FoodItems(
-          shopId: shop.id,
-          shopName: shop['name'],
-        ),
-      ),
-    );
-                },
-              );
-            },            
-          );
+          } else {
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                DocumentSnapshot shop = snapshot.data!.docs[index];
+                return ListTile(
+                  title: Text(shop['shopName']),
+                  onTap: () {
+                    
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FoodItems(
+                          shopId: shop.id,
+                          shopName: shop['name'],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            );
           }
         },
       ),

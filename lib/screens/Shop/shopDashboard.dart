@@ -118,7 +118,6 @@ final FirebaseAuth auth = FirebaseAuth.instance;
               }
             },
           );
-
         },
       ),
     );

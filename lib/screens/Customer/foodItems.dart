@@ -3,25 +3,36 @@ import 'package:flutter/material.dart';
 import 'package:food_ordering_app/Theme/Constants.dart';
 import 'package:food_ordering_app/screens/Shop/customListTile.dart';
 
-class FoodItems extends StatelessWidget {
+class FoodItems extends StatefulWidget {
   final String shopId;
   final String shopName;
 
    const FoodItems({super.key,required this.shopId,required this.shopName});
 
   @override
+  State<FoodItems> createState() => _FoodItemsState();
+}
+
+class _FoodItemsState extends State<FoodItems> {
+
+@override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
       backgroundColor:kPrimaryColor,
-      title :  Text(shopName,style: const TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.w400,),textAlign: TextAlign.center,)
+      title :  Text(widget.shopName,style: const TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.w400,),textAlign: TextAlign.center,)
       ),
       backgroundColor: Colors.white,
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-            .collection('shopItems')
-            .where('shopId', isEqualTo: shopId)
+            .collection('shopItems')         
+            .where('shopId', isEqualTo: widget.shopId)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
@@ -35,7 +46,6 @@ class FoodItems extends StatelessWidget {
             itemBuilder: (context, index) {
               DocumentSnapshot item = snapshot.data!.docs[index];
               Map<String, dynamic>? data = item.data() as Map<String, dynamic>?;
-
               if (data != null &&
                   data.containsKey('name') &&
                   data.containsKey('description') &&
@@ -52,7 +62,6 @@ class FoodItems extends StatelessWidget {
               }
             },
           );
-
         },
       ),
     );  
