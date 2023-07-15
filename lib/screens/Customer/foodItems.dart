@@ -18,7 +18,6 @@ class _FoodItemsState extends State<FoodItems> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.shopId);
     return Scaffold(
       appBar: AppBar(
       backgroundColor:kPrimaryColor,
