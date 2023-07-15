@@ -7,7 +7,8 @@ class FoodItems extends StatefulWidget {
   final String shopId;
   final String shopName;
 
-   const FoodItems({super.key,required this.shopId,required this.shopName});
+    const FoodItems({Key? key, required this.shopId, required this.shopName})
+      : super(key: key);
 
   @override
   State<FoodItems> createState() => _FoodItemsState();
@@ -15,14 +16,9 @@ class FoodItems extends StatefulWidget {
 
 class _FoodItemsState extends State<FoodItems> {
 
-@override
-  void initState() {
-    super.initState();
-
-  }
-
   @override
   Widget build(BuildContext context) {
+    print(widget.shopId);
     return Scaffold(
       appBar: AppBar(
       backgroundColor:kPrimaryColor,
@@ -32,7 +28,8 @@ class _FoodItemsState extends State<FoodItems> {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('shopItems')         
-            .where('shopId', isEqualTo: widget.shopId)
+            .doc(widget.shopId)
+            .collection('items')
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {

@@ -103,20 +103,34 @@ setState(() {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
                 DocumentSnapshot shop = snapshot.data!.docs[index];
-                return ListTile(
-                  title: Text(shop['shopName']),
-                  onTap: () {
-                    
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FoodItems(
-                          shopId: shop.id,
-                          shopName: shop['name'],
-                        ),
+
+                return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: const Color.fromARGB(255, 196, 241, 235)),
+                  child: ListTile(
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    title: Text(
+                      shop['shopName'],
+                      style: const TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.bold,
                       ),
-                    );
-                  },
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FoodItems(
+                            shopId: shop.id,
+                            shopName: shop['shopName'],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             );
