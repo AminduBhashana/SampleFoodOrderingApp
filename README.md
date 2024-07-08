@@ -46,7 +46,7 @@ To get started with the project, follow these steps:
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/FoodOrderingApp.git
+    git clone https://github.com/AminduBhashana/SampleFoodOrderingApp.git
     ```
 2. Navigate to the project directory:
     ```sh
