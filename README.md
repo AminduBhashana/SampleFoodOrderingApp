@@ -50,7 +50,7 @@ To get started with the project, follow these steps:
     ```
 2. Navigate to the project directory:
     ```sh
-    cd FoodOrderingApp
+    cd SampleFoodOrderingApp
     ```
 3. Install the dependencies:
     ```sh
